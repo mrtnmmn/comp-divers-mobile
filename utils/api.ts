@@ -1,0 +1,41 @@
+const API_BASE_URL = 'http://192.168.1.100:8080/api';
+
+type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
+
+interface FetchOptions<T> {
+  method?: RequestMethod;
+  body?: T;
+  token?: string;
+}
+
+export async function apiFetch<T>(
+  endpoint: string,
+  options: FetchOptions<any> = {}
+): Promise<T> {
+  const { method = 'GET', body, token } = options;
+
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  console.log(`${API_BASE_URL}${endpoint}`)
+
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    method,
+    headers,
+    body: body ? JSON.stringify(body) : undefined,
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.message || `API error: ${response.status}`);
+  }
+
+  const jsonData = await response.json()
+  console.log(jsonData)
+  return jsonData;
+}
