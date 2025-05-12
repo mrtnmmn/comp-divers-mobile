@@ -22,8 +22,6 @@ export async function apiFetch<T>(
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  console.log(`${API_BASE_URL}${endpoint}`)
-
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     method,
     headers,
@@ -36,6 +34,5 @@ export async function apiFetch<T>(
   }
 
   const jsonData = await response.json()
-  console.log(jsonData)
   return jsonData;
 }

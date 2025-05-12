@@ -29,17 +29,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     loadToken()
   }, [])
 
-  useEffect(() => {
-    console.log('Token: ' + token)
-  }, [token])
-
-  const login = async (username: string, password: string) => {
-    
+  const login = async (username: string, password: string) => {    
     const response = await apiFetch<{ token: string }>('/auth/login', {
       method: 'POST',
       body: { username, password },
     });
-
     setToken(response.token)
   }
 
