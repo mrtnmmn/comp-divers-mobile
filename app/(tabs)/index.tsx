@@ -1,18 +1,43 @@
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { useEffect } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { useEffect, useState } from 'react';
+import { FlatList, Platform, StyleSheet } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
+import { LoadoutViewer } from '@/components/LoadoutViewer';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useAuth } from '@/contexts/AuthContext';
+import { Loadout } from '@/interfaces/Loadout';
+import { apiFetch } from '@/utils/api';
 import { Button } from '@react-navigation/elements';
 
 export default function HomeScreen() {
   const { token, logout } = useAuth();
   const router = useRouter();
+
+  const [loadouts, setLoadouts] = useState<Loadout[] | null>(null) 
+
+  useEffect(() => {
+    const loadData = async () => {
+
+      if(!token) { 
+        return;
+      }
+
+      const response = await apiFetch<Loadout[]>('/loadouts', {
+        method: 'GET',
+        token: token
+      });
+
+      setLoadouts(response)
+    }
+    loadData()
+  }, [])
+
+  useEffect(() => {
+    console.log("Loadouts: " , loadouts)
+  }, [loadouts])
 
   useEffect(() => {
     if (!token) {
@@ -36,9 +61,20 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+        <FloatingButton />
+        <ThemedText type="title">Welcome back soldier!</ThemedText>
       </ThemedView>
+
+      {loadouts !== null &&
+        <FlatList
+          data={loadouts}
+          keyExtractor={(item) => item.uuid}
+          renderItem={({ item }) => (
+            <LoadoutViewer loadoutData={item} />
+          )}
+        />
+      }
+
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>

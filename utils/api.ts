@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://192.168.1.100:8080/api';
+const API_BASE_URL = 'http://192.168.1.90:8080/api';
 
 type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
