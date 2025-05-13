@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   mainLoadoutView: {
     margin: 1,
-    borderRadius: 5,
+    borderRadius: 15,
     borderWidth: 3,
     borderColor: '#fff',
     paddingVertical: 10,

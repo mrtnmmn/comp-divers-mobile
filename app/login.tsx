@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#ffe900',
-    color: '#ffe900',
+    color: '#151718',
     fontWeight: 'bold',
     marginTop: 10,
   },

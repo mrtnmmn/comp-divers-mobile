@@ -1,3 +1,4 @@
+import { AuthResponse } from '@/interfaces/AuthResponse';
 import { apiFetch } from '@/utils/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useContext, useEffect, useState } from 'react';
@@ -30,7 +31,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [])
 
   const login = async (username: string, password: string) => {    
-    const response = await apiFetch<{ token: string }>('/auth/login', {
+    const response = await apiFetch< AuthResponse >('/auth/login', {
       method: 'POST',
       body: { username, password },
     });
