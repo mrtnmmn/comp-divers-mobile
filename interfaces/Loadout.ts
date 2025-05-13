@@ -1,16 +1,16 @@
 import { Faction } from "./Faction"
 
 export interface Loadout {
-  uuid: any
+  uuid: string
   name: string
   description: string
-  primaryWeapon: any
-  secondaryWeapon: any
-  throwableDTO: any
-  armor: any
-  armorPassive: any
-  stratagems: any
-  booster: any
+  primaryWeapon: string
+  secondaryWeapon: string
+  throwableDTO: string
+  armor: string
+  armorPassive: string
+  stratagems: string
+  booster: string
   faction: Faction
-  user: any
+  user: string
 }

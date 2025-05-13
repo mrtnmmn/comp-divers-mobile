@@ -1,4 +1,4 @@
 export interface Faction {
-  uuid: any
+  uuid: string
   name: string
 }

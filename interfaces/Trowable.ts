@@ -1,7 +1,7 @@
 import { Warbond } from "./Warbond"
 
-export interface PrimaryWeapon {
-  uuid: string 
+export interface Throwable { 
+  uuid: string
   name: string
   category: string
   penetration: string
