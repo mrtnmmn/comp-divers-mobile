@@ -11,17 +11,28 @@ interface LoadoutViewerProps {
   loadoutData: Loadout
 }
 
-export function LoadoutViewer({loadoutData}: LoadoutViewerProps) {
-
+export function LoadoutViewer({ loadoutData }: LoadoutViewerProps) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const factionName = loadoutData.faction?.name;
+
+  if (!factionName) {
+    console.warn('Loadout is missing faction:', loadoutData);
+  }
+
   return (
-    <ThemedView style={[styles.mainLoadoutView, styles[loadoutData.faction.name as keyof typeof styles]]}>
+    <ThemedView
+      style={[
+        styles.mainLoadoutView,
+        factionName ? styles[factionName as keyof typeof styles] : null,
+      ]}
+    >
       <TouchableOpacity
         style={styles.heading}
         onPress={() => setIsOpen((value) => !value)}
-        activeOpacity={0.8}>
-        <ThemedText type="title">{capitalize(loadoutData.name)}</ThemedText>
+        activeOpacity={0.8}
+      >
+        <ThemedText type="subtitle">{capitalize(loadoutData.name)}</ThemedText>
         <IconSymbol
           name="chevron.right"
           size={18}
@@ -29,21 +40,24 @@ export function LoadoutViewer({loadoutData}: LoadoutViewerProps) {
           color={Colors.dark.icon}
           style={{ transform: [{ rotate: isOpen ? '90deg' : '0deg' }] }}
         />
-
       </TouchableOpacity>
-      {isOpen && 
+
+      {isOpen && (
         <ThemedView style={styles.content}>
-          <ThemedText type="subtitle">{loadoutData.description}</ThemedText>
-          <ThemedText>{loadoutData.primaryWeapon.name}</ThemedText>
-          <ThemedText>{loadoutData.secondaryWeapon.name}</ThemedText>
-          <ThemedText>{loadoutData.throwableDTO.name}</ThemedText>
-          <ThemedText>{loadoutData.armor.category}</ThemedText>
-          <ThemedText>{loadoutData.armorPassive.name}</ThemedText>
-          <ThemedText>{loadoutData.booster.name}</ThemedText>
-          </ThemedView>
-      }
+          {loadoutData.description && (
+            <ThemedText type="defaultSemiBold" style={{color: '#7d7d7d', marginBottom: 10}}>
+              {capitalize(loadoutData.description).trim()}
+            </ThemedText>
+          )}
+          <ThemedText>{loadoutData.primaryWeapon?.name}</ThemedText>
+          <ThemedText>{loadoutData.secondaryWeapon?.name}</ThemedText>
+          <ThemedText>{loadoutData.throwable?.name}</ThemedText>
+          <ThemedText>{loadoutData.armor?.category} - {loadoutData.armorPassive?.name}</ThemedText>
+          <ThemedText>{loadoutData.booster?.name}</ThemedText>
+        </ThemedView>
+      )}
     </ThemedView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -58,14 +72,14 @@ const styles = StyleSheet.create({
     margin: 1,
     borderRadius: 15,
     borderWidth: 3,
-    borderColor: '#fff',
+    borderColor: '#202020',
     paddingVertical: 10,
     paddingHorizontal: 15,
     backgroundColor: '#303030'
   },
   content: {
     marginTop: 6,
-    marginLeft: 24,
+    marginLeft: 10,
     backgroundColor: '#303030'
   },
   Bots: {

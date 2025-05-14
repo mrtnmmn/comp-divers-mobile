@@ -11,13 +11,13 @@ export interface Loadout {
   uuid: string
   name: string
   description: string
-  primaryWeapon: string
-  secondaryWeapon: string
-  throwable: string
-  armor: string
-  armorPassive: string
-  stratagems: string
-  booster: string
+  primaryWeapon: PrimaryWeapon
+  secondaryWeapon: SecondaryWeapon
+  throwable: Throwable
+  armor: Armor
+  armorPassive: ArmorPassive
+  stratagems: Stratagem
+  booster: Booster
   faction: Faction
   user: string
 }

@@ -11,10 +11,9 @@ import { ThemedView } from '@/components/ThemedView';
 import { useAuth } from '@/contexts/AuthContext';
 import { Loadout } from '@/interfaces/Loadout';
 import { apiFetch } from '@/utils/api';
-import { Button } from '@react-navigation/elements';
 
 export default function HomeScreen() {
-  const { token, logout } = useAuth();
+  const { token } = useAuth();
   const router = useRouter();
 
   const [loadouts, setLoadouts] = useState<Loadout[] | null>(null);
@@ -37,11 +36,11 @@ export default function HomeScreen() {
     }
   }, [token]);
 
-  if (!token) return null;
+  useEffect(() => {
+    console.log(loadouts)
+  }, [loadouts]);
 
-  const handleLogout = async () => {
-    await logout();
-  };
+  if (!token) return null;
 
   return (
     <View style={{ flex: 1 }}>
@@ -54,13 +53,14 @@ export default function HomeScreen() {
           />
         }>
         <ThemedView style={styles.titleContainer}>
-          <ThemedText type="title">Welcome back soldier!</ThemedText>
+          <ThemedText type="title" style={{color: '#ffe900'}}>Welcome back soldier!</ThemedText>
         </ThemedView>
 
-        {loadouts?.map((item) => (
-          <LoadoutViewer loadoutData={item} />
-        ))}
-        <Button onPress={handleLogout}>Logout</Button>
+        <View style={{ gap: 8, paddingHorizontal: 0 }}>
+          {loadouts?.map((item) => (
+            <LoadoutViewer loadoutData={item} key={item.uuid} />
+          ))}
+        </View>
       </ParallaxScrollView>
 
       <FloatingButton />
