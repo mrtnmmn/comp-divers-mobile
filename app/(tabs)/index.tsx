@@ -52,7 +52,7 @@ export default function HomeScreen() {
           />
         }>
         <ThemedView style={styles.titleContainer}>
-          <ThemedText type="title" style={{color: '#ffe900'}}>Welcome back soldier!</ThemedText>
+          <ThemedText type="title" style={{color: '#ffe900', marginLeft: 25}}>Welcome back soldier!</ThemedText>
         </ThemedView>
 
         <View style={{ gap: 8, paddingHorizontal: 0 }}>
