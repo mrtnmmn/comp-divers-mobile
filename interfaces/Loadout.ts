@@ -6,6 +6,7 @@ import { PrimaryWeapon } from "./PrimaryWeapon"
 import { SecondaryWeapon } from "./SecondaryWeapon"
 import { Stratagem } from "./Stratagem"
 import { Throwable } from "./Trowable"
+import { User } from "./User"
 
 export interface Loadout {
   uuid: string
@@ -19,7 +20,7 @@ export interface Loadout {
   stratagems: Stratagem
   booster: Booster
   faction: Faction
-  user: string
+  user: User
   creationDate: Date
 }
 
@@ -48,4 +49,8 @@ export interface LoadoutRequest {
   stratagems: string[]
   booster: string
   faction: string
+}
+
+export interface LoadoutPageable {
+  content: Loadout[]
 }

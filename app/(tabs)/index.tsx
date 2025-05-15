@@ -57,7 +57,7 @@ export default function HomeScreen() {
 
         <View style={{ gap: 8, paddingHorizontal: 0 }}>
           {loadouts?.map((item) => (
-            <LoadoutViewer loadoutData={item} key={item.uuid} />
+            <LoadoutViewer loadoutData={item} isSocial={false} key={item.uuid} />
           ))}
         </View>
       </ParallaxScrollView>

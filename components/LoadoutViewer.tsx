@@ -1,15 +1,20 @@
 import { Loadout } from '@/interfaces/Loadout';
 import { capitalize } from '@/utils/Format';
-import { StyleSheet } from 'react-native';
+import FontAwesome from '@expo/vector-icons/build/FontAwesome';
+import { useState } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
 
 interface LoadoutViewerProps {
-  loadoutData: Loadout
+  loadoutData: Loadout,
+  isSocial: boolean
 }
 
-export function LoadoutViewer({ loadoutData }: LoadoutViewerProps) {
+export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
   const factionName = loadoutData.faction?.name;
+
+  const [likedByUser, setLikedByUser] = useState<boolean>(false)
 
   if (!factionName) {
     console.warn('Loadout is missing faction:', loadoutData);
@@ -22,7 +27,17 @@ export function LoadoutViewer({ loadoutData }: LoadoutViewerProps) {
         factionName ? styles[factionName as keyof typeof styles] : null,
       ]}
     >
-      <ThemedText type='title' style={{color: '#ffe900'}}>{loadoutData.name}</ThemedText>
+      <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 5}}>
+        <View style={{display: 'flex', flexDirection: 'row'}}>
+          <ThemedText type='subtitle' style={{color: '#ffe900'}}>{loadoutData.name}</ThemedText>
+          {isSocial && <ThemedText type='subtitle' style={{color: '#606060'}}> - @{loadoutData.user.username}</ThemedText>}
+        </View>
+        {isSocial &&
+          <Pressable onPress={() => {setLikedByUser(!likedByUser)}}>
+            <FontAwesome name="thumbs-up" size={25} color={likedByUser ? '#107a00' : '#8a8a8a'}/>
+          </Pressable>
+        }
+      </View>
       <ThemedView style={styles.content}>.
         {loadoutData.description && (
           <ThemedText type="defaultSemiBold" style={{color: '#7d7d7d', marginBottom: 10}}>
