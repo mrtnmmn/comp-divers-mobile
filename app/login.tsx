@@ -12,12 +12,12 @@ import {
 
 export default function LoginScreen() {
   const router = useRouter();
-  const { login } = useAuth();
+  const { login, register } = useAuth();
 
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [register, setRegister] = useState<boolean>(false);
+  const [isRegistering, setIsRegistering] = useState<boolean>(false);
 
   const [usernameError, setUsernameError] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
@@ -40,7 +40,7 @@ export default function LoginScreen() {
       setPasswordError('');
     }
 
-    if (register) {
+    if (isRegistering) {
       if (!confirmPassword) {
         setConfirmPasswordError('Please confirm your password.');
         hasError = true;
@@ -54,7 +54,11 @@ export default function LoginScreen() {
 
     if (hasError) return;
 
-    await login(username, password);
+    if (!isRegistering) {
+      await login(username, password);
+    } else {
+      await register(username, password)
+    }
     router.replace('/');
   };
 
@@ -84,7 +88,7 @@ export default function LoginScreen() {
       />
       {passwordError ? <Text style={styles.error}>{passwordError}</Text> : null}
 
-      {register && (
+      {isRegistering && (
         <>
           <Text style={styles.label}>Confirm your password</Text>
           <TextInput
@@ -104,15 +108,15 @@ export default function LoginScreen() {
         color="#151718"
         style={styles.button}
       >
-        {register ? 'Register' : 'Log In'}
+        {isRegistering ? 'Register' : 'Log In'}
       </Button>
 
-      {!register ? (
-        <TouchableOpacity onPress={() => setRegister(true)}>
+      {!isRegistering ? (
+        <TouchableOpacity onPress={() => setIsRegistering(true)}>
           <Text style={styles.registerText}>Don’t have an account? Register</Text>
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity onPress={() => setRegister(false)}>
+        <TouchableOpacity onPress={() => setIsRegistering(false)}>
           <Text style={styles.registerText}>I already have an account.</Text>
         </TouchableOpacity>
       )}

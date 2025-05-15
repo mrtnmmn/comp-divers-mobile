@@ -7,6 +7,7 @@ type AuthContextType = {
   token: string | null
   login: (username: string, password: string) => Promise<void>
   logout: () => Promise<void>
+  register: (username: string, password: string) => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | null>(null)
@@ -43,10 +44,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setToken(null)
   }
 
+  const register = async (username: string, password: string) => {    
+    const response = await apiFetch< AuthResponse >('/auth/register', {
+      method: 'POST',
+      body: { username, password },
+    });
+  }
+
   if (loading) return null
 
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ token, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   )
