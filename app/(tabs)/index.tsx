@@ -37,7 +37,6 @@ export default function HomeScreen() {
   }, [token]);
 
   useEffect(() => {
-    console.log(loadouts)
   }, [loadouts]);
 
   if (!token) return null;
