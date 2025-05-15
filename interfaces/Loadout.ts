@@ -20,6 +20,7 @@ export interface Loadout {
   booster: Booster
   faction: Faction
   user: string
+  creationDate: Date
 }
 
 export interface LoadoutForm {
