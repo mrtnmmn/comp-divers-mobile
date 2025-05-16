@@ -40,7 +40,7 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
           </Pressable>
         }
       </View>
-      <ThemedView style={styles.content}>.
+      <ThemedView style={styles.content}>
         {loadoutData.description && (
           <ThemedText type="defaultSemiBold" style={{color: '#7d7d7d', marginBottom: 10}}>
             {capitalize(loadoutData.description).trim()}
@@ -83,7 +83,7 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
         <ThemedText type='subtitle' style={{color: '#ffe900'}}>Stratagems: </ThemedText>
         {
           loadoutData.stratagems?.map((stratagem) => (
-            <View style={{display: 'flex', flexDirection: 'row'}}>
+            <View style={{display: 'flex', flexDirection: 'row'}} key={stratagem.uuid}>
             <StratagemIcon stratagemId={stratagem.uuid} />
             <View style={{marginLeft: 10}}>
               <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{stratagem.name}</ThemedText>
