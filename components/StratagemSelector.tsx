@@ -2,6 +2,7 @@ import { Stratagem } from '@/interfaces/Stratagem'
 import { FontAwesome } from '@expo/vector-icons'
 import React, { useState } from 'react'
 import { FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StratagemIcon } from './StratagemIcon'
 
 type StratagemSelectorProps = {
   options: Stratagem[]
@@ -75,11 +76,14 @@ export function StratagemSelector({
                     disabled={disabled}
                   >
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginHorizontal: 10 }}>
-                      <View>
-                        <Text style={styles.optionText}>{item.name}</Text>
-                        <Text style={styles.optionDetails}>
-                          Category: {item.category}
-                        </Text>
+                      <View style={{ display:'flex', flexDirection: 'row' }}>
+                        <StratagemIcon stratagemId={item.uuid} iconHeight={40} iconWidth={40}/>
+                        <View style={{marginLeft: 10, justifyContent: 'center'}}>
+                          <Text style={styles.optionText}>{item.name}</Text>
+                          <Text style={styles.optionDetails}>
+                            {item.category}
+                          </Text>
+                        </View>
                       </View>
                       {isItemSelected && <FontAwesome name="check" size={18} color="#ffe900" />}
                     </View>

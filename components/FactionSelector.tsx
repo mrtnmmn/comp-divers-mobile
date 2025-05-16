@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#202020',
+    borderColor: '#404040',
   },
   leftRounded: {
     borderTopLeftRadius: 12,
@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
   },
   selectedOption: {
     backgroundColor: '#007AFF',
+    borderColor: '#404040',
   },
   selectedOptionBots: {
     backgroundColor: '#85000b',

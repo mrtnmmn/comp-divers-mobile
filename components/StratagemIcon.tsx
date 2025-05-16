@@ -5,9 +5,11 @@ import { View } from 'react-native';
 
 type Props = {
   stratagemId: string;
+  iconWidth: number,
+  iconHeight: number
 };
 
-export const StratagemIcon = ({ stratagemId }: Props) => {
+export const StratagemIcon = ({ stratagemId, iconWidth, iconHeight }: Props) => {
 
   const SvgIcon = stratagemSvgMapper[stratagemId] || DefaultStratagem;
 
@@ -15,7 +17,7 @@ export const StratagemIcon = ({ stratagemId }: Props) => {
 
   return (
     <View>
-      <SvgIcon width={70} height={70} />
+      <SvgIcon width={iconWidth} height={iconHeight} />
     </View>
   );
 };

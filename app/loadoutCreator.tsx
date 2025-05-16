@@ -212,6 +212,7 @@ export default function LoadoutCreator() {
             onSelect={handleFormChange}
             selectionKey={'booster'}
           />
+          <ThemedText type="subtitle" style={styles.titles}>Faction:</ThemedText>
           <FactionSelector 
             options={data !== null && data.factionsData !== null ? data.factionsData: []}
             onSelect={faction => handleFormChange('faction', faction)}/>
@@ -238,6 +239,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginBottom: 15,
     color: '#ffe900',
+    backgroundColor: '#1e1f21'
   },
   titles: {
     color: "#ffe900",
