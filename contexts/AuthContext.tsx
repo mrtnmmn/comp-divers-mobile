@@ -49,6 +49,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       method: 'POST',
       body: { username, password },
     });
+    setToken(response.token)
   }
 
   if (loading) return null
