@@ -1,8 +1,10 @@
+import OrbitalRailcannonStrike from '@/assets/images/stratagems/orbital_railcannon_strike.svg';
 import { Loadout } from '@/interfaces/Loadout';
 import { capitalize } from '@/utils/Format';
 import FontAwesome from '@expo/vector-icons/build/FontAwesome';
 import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
+import { StratagemIcon } from './StratagemIcon';
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
 
@@ -44,11 +46,61 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
             {capitalize(loadoutData.description).trim()}
           </ThemedText>
         )}
-        <ThemedText>{loadoutData.primaryWeapon?.name}</ThemedText>
-        <ThemedText>{loadoutData.secondaryWeapon?.name}</ThemedText>
-        <ThemedText>{loadoutData.throwable?.name}</ThemedText>
-        <ThemedText>{loadoutData.armor?.category} - {loadoutData.armorPassive?.name}</ThemedText>
-        <ThemedText>{loadoutData.booster?.name}</ThemedText>
+        
+        <ThemedText type='subtitle' style={{color: '#ffe900'}}>Primary: </ThemedText>
+        <View style={{display: 'flex', flexDirection: 'row'}}>
+          <OrbitalRailcannonStrike width={70} height={70} />
+          <View style={{marginLeft: 10}}>
+            <ThemedText type='subtitle' style={{color: '#ffe900'}}>{loadoutData.primaryWeapon?.name}</ThemedText>
+            <ThemedText type='defaultSemiBold' style={{color: '#606060'}}>Category: {loadoutData.primaryWeapon?.category}</ThemedText>
+            <ThemedText type='defaultSemiBold' style={{color: '#606060'}}>Penetration: {loadoutData.primaryWeapon?.penetration}</ThemedText>
+          </View>
+        </View>
+
+        <ThemedText type='subtitle' style={{color: '#ffe900'}}>Secondary: </ThemedText>
+        <View style={{display: 'flex', flexDirection: 'row'}}>
+          <OrbitalRailcannonStrike width={70} height={70} />
+          <View style={{marginLeft: 10}}>
+            <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{loadoutData.secondaryWeapon?.name}</ThemedText>
+            <ThemedText type='defaultSemiBold' style={{color: '#606060'}}>Category: {loadoutData.primaryWeapon?.category}</ThemedText>
+            <ThemedText type='defaultSemiBold' style={{color: '#606060'}}>Penetration: {loadoutData.primaryWeapon?.penetration}</ThemedText>
+          </View>
+        </View>
+
+        <ThemedText type='subtitle' style={{color: '#ffe900'}}>Throwable: </ThemedText>
+        <View style={{display: 'flex', flexDirection: 'row'}}>
+          <OrbitalRailcannonStrike width={70} height={70} />
+          <View style={{marginLeft: 10}}>
+            <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{loadoutData.throwable?.name}</ThemedText>
+            <ThemedText type='defaultSemiBold' style={{color: '#606060'}}>Category: {loadoutData.throwable?.category}</ThemedText>
+            <ThemedText type='defaultSemiBold' style={{color: '#606060'}}>Penetration: {loadoutData.throwable?.penetration}</ThemedText>
+          </View>
+        </View>
+
+        <ThemedText type='subtitle' style={{color: '#ffe900'}}>Armor: </ThemedText>
+        <ThemedText>{capitalize(loadoutData.armor?.category)} - {capitalize(loadoutData.armorPassive?.name)}</ThemedText>
+
+        <ThemedText type='subtitle' style={{color: '#ffe900'}}>Stratagems: </ThemedText>
+        {
+          loadoutData.stratagems?.map((stratagem) => (
+            <View style={{display: 'flex', flexDirection: 'row'}}>
+            r<StratagemIcon stratagemId={stratagem.uuid} />
+            <View style={{marginLeft: 10}}>
+              <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{stratagem.name}</ThemedText>
+              <ThemedText type='defaultSemiBold' style={{color: '#606060', flexWrap: 'wrap'}}>{stratagem.category}</ThemedText>
+            </View>
+          </View>
+          ))
+        }
+
+        <ThemedText type='subtitle' style={{color: '#ffe900'}}>Booster: </ThemedText>
+        <View style={{display: 'flex', flexDirection: 'row'}}>
+          <OrbitalRailcannonStrike width={70} height={70} />
+          <View style={{marginLeft: 10}}>
+            <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{loadoutData.booster?.name}</ThemedText>
+            <ThemedText type='defaultSemiBold' style={{color: '#606060', flexWrap: 'wrap'}}>{loadoutData.booster?.description}</ThemedText>
+          </View>
+        </View>
       </ThemedView>
     </ThemedView>
   );

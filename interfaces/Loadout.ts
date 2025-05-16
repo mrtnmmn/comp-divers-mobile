@@ -17,7 +17,7 @@ export interface Loadout {
   throwable: Throwable
   armor: Armor
   armorPassive: ArmorPassive
-  stratagems: Stratagem
+  stratagems: Stratagem[]
   booster: Booster
   faction: Faction
   user: User
