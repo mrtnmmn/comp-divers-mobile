@@ -44,7 +44,7 @@ const transformLoadoutFormToRequest = (loadoutForm: LoadoutForm): LoadoutRequest
     armorPassive: loadoutForm.armorPassive?.uuid ?? '',
     stratagems: loadoutForm.stratagems.map(s => s.uuid),
     booster: loadoutForm.booster?.uuid ?? '',
-    faction: loadoutForm.faction?.uuid ?? 'e94cd809-30dd-4e48-9296-c0f30d46de86'
+    factions: loadoutForm.factions?.map(f => f.uuid) ?? []
   };
 }
 
@@ -62,7 +62,7 @@ export default function LoadoutCreator() {
     throwable: null,
     stratagems: [],
     booster: null,
-    faction: null
+    factions: []
   })
 
   useEffect(() => {
@@ -117,9 +117,6 @@ export default function LoadoutCreator() {
     loadData()
   }, [])
 
-  useEffect(() => {
-  }, [data])
-
   const handleFormChange = (key: keyof typeof form, value: any) => {
     setForm(prev => ({ ...prev, [key]: value }))
   }
@@ -143,10 +140,12 @@ export default function LoadoutCreator() {
   return (
     <ScrollView style={{backgroundColor: '#151718'}}>
       <View style={styles.container}>
-          <TouchableOpacity onPress={() => router.replace('/')}>
-            <FontAwesome name="arrow-left" size={30} color="#fff" style={{marginBottom: 25}}/>
-          </TouchableOpacity>  
-          <ThemedText type="title" style={[styles.titles, {marginBottom: 20}]}>Creating New Loadout:</ThemedText>
+          <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <TouchableOpacity onPress={() => router.replace('/')}>
+              <FontAwesome name="arrow-left" size={30} color="#fff" style={{marginBottom: 25}}/>
+            </TouchableOpacity>  
+            <ThemedText type="title" style={[styles.titles, {marginBottom: 20, marginLeft: 10}]}>Creating New Loadout:</ThemedText>
+          </View>
           <ThemedText type="subtitle" style={styles.titles}>Loadout name:</ThemedText>
           <TextInput 
             style={styles.input}
@@ -215,7 +214,7 @@ export default function LoadoutCreator() {
           <ThemedText type="subtitle" style={styles.titles}>Faction:</ThemedText>
           <FactionSelector 
             options={data !== null && data.factionsData !== null ? data.factionsData: []}
-            onSelect={faction => handleFormChange('faction', faction)}/>
+            onSelect={factions => handleFormChange('factions', factions)}/>
           <SaveButton title="Save Loadout" onPress={saveForm}/>
       </View>
     </ScrollView>

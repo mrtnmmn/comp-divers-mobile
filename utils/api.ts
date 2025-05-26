@@ -1,4 +1,5 @@
-const API_BASE_URL = 'http://192.168.1.90:8080/api';
+const API_BASE_URL_LOCAL = 'http://192.168.1.90:8080/api';
+const API_BASE_URL = 'https://compdivers.mrtndev.org/api';
 
 type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
@@ -22,7 +23,7 @@ export async function apiFetch<T>(
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  const response = await fetch(`${API_BASE_URL_LOCAL}${endpoint}`, {
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined,

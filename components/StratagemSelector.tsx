@@ -1,6 +1,6 @@
 import { Stratagem } from '@/interfaces/Stratagem'
 import { FontAwesome } from '@expo/vector-icons'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { StratagemIcon } from './StratagemIcon'
 
@@ -28,6 +28,10 @@ export function StratagemSelector({
       onChange([...selected, item])
     }
   }
+
+
+  useEffect(() => {
+  }, [options])
 
   const isSelected = (item: Stratagem) =>
     selected.some((stratagem) => stratagem.uuid === item.uuid)

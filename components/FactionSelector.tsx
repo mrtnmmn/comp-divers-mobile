@@ -4,21 +4,28 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface FactionSelectorProps {
   options: Faction[]
-  onSelect: (value: Faction) => void
+  onSelect: (values: Faction[]) => void
 }
 
 export function FactionSelector({ options, onSelect }: FactionSelectorProps) {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
 
   const handleSelect = (index: number) => {
-    setSelectedIndex(index);
-    onSelect(options[index]);
+    setSelectedIndices(prev => {
+      const alreadySelected = prev.includes(index);
+      const updated = alreadySelected
+        ? prev.filter(i => i !== index)
+        : [...prev, index];
+      onSelect(updated.map(i => options[i]));
+      let aux = updated.map(i => options[i])
+      return updated;
+    });
   };
 
   return (
     <View style={styles.container}>
       {options.map((option, index) => {
-        const isSelected = selectedIndex === index;
+        const isSelected = selectedIndices.includes(index);
 
         const dynamicStyleKey = `selectedOption${option.name}` as keyof typeof styles;
         const dynamicSelectedStyle = isSelected && styles[dynamicStyleKey];
@@ -48,8 +55,7 @@ export function FactionSelector({ options, onSelect }: FactionSelectorProps) {
       })}
     </View>
   );
-};
-
+}
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',

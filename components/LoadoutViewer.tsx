@@ -1,9 +1,9 @@
-import OrbitalRailcannonStrike from '@/assets/images/stratagems/orbital_railcannon_strike.svg';
 import { Loadout } from '@/interfaces/Loadout';
+import formatDate from '@/utils/Dates';
 import { capitalize } from '@/utils/Format';
-import FontAwesome from '@expo/vector-icons/build/FontAwesome';
 import { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { FactionIcon } from './FactionIcon';
 import { StratagemIcon } from './StratagemIcon';
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
@@ -14,30 +14,23 @@ interface LoadoutViewerProps {
 }
 
 export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
-  const factionName = loadoutData.faction?.name;
-
   const [likedByUser, setLikedByUser] = useState<boolean>(false)
 
-  if (!factionName) {
-    console.warn('Loadout is missing faction:', loadoutData);
-  }
 
   return (
     <ThemedView
       style={[
         styles.mainLoadoutView,
-        factionName ? styles[factionName as keyof typeof styles] : null,
       ]}
     >
       <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 5}}>
         <View style={{display: 'flex', flexDirection: 'row'}}>
-          <ThemedText type='subtitle' style={{color: '#ffe900'}}>{loadoutData.name}</ThemedText>
+          <FactionIcon factionId='9e3e0edf-2822-4863-a697-c2083cd5d2ef' iconWidth={20} iconHeight={20} />
+          <ThemedText type='subtitle' style={{color: '#ffe900', marginLeft: 5}}>{loadoutData.name}</ThemedText>
           {isSocial && <ThemedText type='subtitle' style={{color: '#606060'}}> - @{loadoutData.user.username}</ThemedText>}
         </View>
         {isSocial &&
-          <Pressable onPress={() => {setLikedByUser(!likedByUser)}}>
-            <FontAwesome name="thumbs-up" size={25} color={likedByUser ? '#107a00' : '#8a8a8a'}/>
-          </Pressable>
+          <ThemedText type='subtitle' style={{color: '#606060'}}>{formatDate(loadoutData.creationDate)}</ThemedText>
         }
       </View>
       <ThemedView style={styles.content}>
@@ -49,7 +42,6 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
         
         <ThemedText type='subtitle' style={{color: '#ffe900'}}>Primary: </ThemedText>
         <View style={{display: 'flex', flexDirection: 'row'}}>
-          <OrbitalRailcannonStrike width={70} height={70} />
           <View style={{marginLeft: 10}}>
             <ThemedText type='subtitle' style={{color: '#ffe900'}}>{loadoutData.primaryWeapon?.name}</ThemedText>
             <ThemedText type='defaultSemiBold' style={{color: '#606060'}}>Category: {loadoutData.primaryWeapon?.category}</ThemedText>
@@ -59,7 +51,6 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
 
         <ThemedText type='subtitle' style={{color: '#ffe900'}}>Secondary: </ThemedText>
         <View style={{display: 'flex', flexDirection: 'row'}}>
-          <OrbitalRailcannonStrike width={70} height={70} />
           <View style={{marginLeft: 10}}>
             <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{loadoutData.secondaryWeapon?.name}</ThemedText>
             <ThemedText type='defaultSemiBold' style={{color: '#606060'}}>Category: {loadoutData.primaryWeapon?.category}</ThemedText>
@@ -69,7 +60,6 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
 
         <ThemedText type='subtitle' style={{color: '#ffe900'}}>Throwable: </ThemedText>
         <View style={{display: 'flex', flexDirection: 'row'}}>
-          <OrbitalRailcannonStrike width={70} height={70} />
           <View style={{marginLeft: 10}}>
             <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{loadoutData.throwable?.name}</ThemedText>
             <ThemedText type='defaultSemiBold' style={{color: '#606060'}}>Category: {loadoutData.throwable?.category}</ThemedText>
@@ -81,21 +71,24 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
         <ThemedText>{capitalize(loadoutData.armor?.category)} - {capitalize(loadoutData.armorPassive?.name)}</ThemedText>
 
         <ThemedText type='subtitle' style={{color: '#ffe900'}}>Stratagems: </ThemedText>
+        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10 }}>
         {
           loadoutData.stratagems?.map((stratagem) => (
             <View style={{display: 'flex', flexDirection: 'row'}} key={stratagem.uuid}>
-            <StratagemIcon stratagemId={stratagem.uuid} iconWidth={70} iconHeight={70}/>
+            <StratagemIcon stratagemId={stratagem.uuid} iconWidth={65} iconHeight={65}/>
+            {/*
             <View style={{marginLeft: 10}}>
               <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{stratagem.name}</ThemedText>
               <ThemedText type='defaultSemiBold' style={{color: '#606060', flexWrap: 'wrap'}}>{stratagem.category}</ThemedText>
             </View>
+            */}
           </View>
           ))
         }
+        </View>
 
         <ThemedText type='subtitle' style={{color: '#ffe900'}}>Booster: </ThemedText>
         <View style={{display: 'flex', flexDirection: 'row'}}>
-          <OrbitalRailcannonStrike width={70} height={70} />
           <View style={{marginLeft: 10}}>
             <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{loadoutData.booster?.name}</ThemedText>
             <ThemedText type='defaultSemiBold' style={{color: '#606060', flexWrap: 'wrap'}}>{loadoutData.booster?.description}</ThemedText>
@@ -125,7 +118,7 @@ const styles = StyleSheet.create({
   content: {
     marginTop: 6,
     marginBottom: 6,
-    marginLeft: 10,
+    marginHorizontal: 10,
   },
   Bots: {
     borderColor: "#202020"

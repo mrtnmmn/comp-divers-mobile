@@ -19,9 +19,9 @@ export interface Loadout {
   armorPassive: ArmorPassive
   stratagems: Stratagem[]
   booster: Booster
-  faction: Faction
+  factions: Faction[]
   user: User
-  creationDate: Date
+  creationDate: string
 }
 
 export interface LoadoutForm {
@@ -34,7 +34,7 @@ export interface LoadoutForm {
   throwable: Throwable | null
   stratagems: Stratagem[]
   booster: Booster | null
-  faction: Faction | null
+  factions: Faction[] | null
 }
 
 
@@ -48,7 +48,7 @@ export interface LoadoutRequest {
   armorPassive: string
   stratagems: string[]
   booster: string
-  faction: string
+  factions: string[]
 }
 
 export interface LoadoutPageable {
