@@ -1,8 +1,10 @@
 import { Stratagem } from '@/interfaces/Stratagem'
+import { capitalize } from '@/utils/Format'
 import { FontAwesome } from '@expo/vector-icons'
 import React, { useEffect, useState } from 'react'
 import { FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { StratagemIcon } from './StratagemIcon'
+import { ThemedText } from './ThemedText'
 
 type StratagemSelectorProps = {
   options: Stratagem[]
@@ -42,7 +44,11 @@ export function StratagemSelector({
         {selected.length > 0 ? (
           selected.map((item) => (
             <View key={item.uuid} style={styles.selectedItem}>
-              <Text style={styles.selectorText}>{item.name}</Text>
+              <StratagemIcon stratagemId={item.uuid} iconHeight={60} iconWidth={60}/>
+              <View style={{ paddingHorizontal: 12 }}>
+                <ThemedText type='subtitle' style={styles.selectorText}>{item.name}</ThemedText>
+                <Text style={styles.optionDetails}>{capitalize(item.category)}</Text>
+              </View>
             </View>
           ))
         ) : (
@@ -111,16 +117,16 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: '#1e1f21',
     flexWrap: 'wrap',
-    flexDirection: 'row',
-    gap: 8,
+    flexDirection: 'column',
   },
   selectedItem: {
+    display: 'flex',
+    flexDirection: 'row',
     marginRight: 10,
     marginBottom: 5,
   },
   selectorText: {
     color: '#ffe900',
-    fontSize: 14,
   },
   backdrop: {
     flex: 1,

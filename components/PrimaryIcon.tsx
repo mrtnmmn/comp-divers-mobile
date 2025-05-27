@@ -18,7 +18,7 @@ export const PrimaryIcon = ({ primaryId, iconWidth, iconHeight }: Props) => {
     <View>
       <Image
         source={imageSource}
-        style={{ width: '100%', height: iconHeight }}
+        style={{ width: '100%', height: 200 }}
         resizeMode="contain"
       />
     </View>

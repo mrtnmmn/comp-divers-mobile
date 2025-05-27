@@ -18,7 +18,7 @@ export const ThrowableIcon = ({ throwableId, iconWidth, iconHeight }: Props) => 
     <View>
       <Image
         source={imageSource}
-        style={{ width: '100%', height: iconHeight }}
+        style={{ width: iconWidth, height: iconHeight }}
         resizeMode="contain"
       />
     </View>

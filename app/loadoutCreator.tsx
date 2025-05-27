@@ -1,9 +1,12 @@
 import { ArmorPassiveTouchableSelector } from "@/components/ArmorPassiveTouchableSelector";
 import { ArmorTouchableSelector } from "@/components/ArmorTouchableSelector";
+import { BoosterSelector } from "@/components/BoosterSelector";
 import { FactionSelector } from "@/components/FactionSelector";
+import { PrimarySelector } from "@/components/PrimarySelector";
+import { SecondarySelector } from "@/components/SecondarySelector";
 import { StratagemSelector } from "@/components/StratagemSelector";
 import { ThemedText } from "@/components/ThemedText";
-import { TouchableSelector } from "@/components/TouchableSelector";
+import { ThrowableSelector } from "@/components/ThrowableSelector";
 import { useAuth } from "@/contexts/AuthContext";
 import { Armor } from "@/interfaces/Armor";
 import { ArmorPassive } from "@/interfaces/ArmorPassive";
@@ -177,21 +180,21 @@ export default function LoadoutCreator() {
             onSelect={arrmorPassive => handleFormChange('armorPassive', arrmorPassive)}
           />
           <ThemedText type="subtitle" style={styles.titles}>Primary weapon:</ThemedText>
-          <TouchableSelector 
+          <PrimarySelector
             options={data !== null && data.primaryWeaponsData !== null ? data.primaryWeaponsData: []} 
             selected={form.primaryWeapon}
             onSelect={handleFormChange}
             selectionKey={'primaryWeapon'}
           />
           <ThemedText type="subtitle" style={styles.titles}>Secondary weapon:</ThemedText>
-          <TouchableSelector 
+          <SecondarySelector 
             options={data !== null && data.secondaryWeaponsData !== null ? data.secondaryWeaponsData: []} 
             selected={form.secondaryWeapon}
             onSelect={handleFormChange}
             selectionKey={'secondaryWeapon'}
           />
           <ThemedText type="subtitle" style={styles.titles}>Throwables:</ThemedText>
-          <TouchableSelector 
+          <ThrowableSelector 
             options={data !== null && data.throwablesData !== null ? data.throwablesData: []} 
             selected={form.throwable}
             onSelect={handleFormChange}
@@ -205,7 +208,7 @@ export default function LoadoutCreator() {
             maxSelections={4}
           />
           <ThemedText type="subtitle" style={styles.titles}>Booster:</ThemedText>
-          <TouchableSelector 
+          <BoosterSelector 
             options={data !== null && data.boostersData !== null ? data.boostersData: []} 
             selected={form.booster}
             onSelect={handleFormChange}
