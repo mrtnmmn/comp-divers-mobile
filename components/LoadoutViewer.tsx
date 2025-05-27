@@ -1,12 +1,16 @@
 import { Loadout } from '@/interfaces/Loadout';
 import formatDate from '@/utils/Dates';
 import { capitalize } from '@/utils/Format';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { BoosterIcon } from './BoosterIcon';
 import { FactionIcon } from './FactionIcon';
+import { PrimaryIcon } from './PrimaryIcon';
+import { SecondaryIcon } from './SecondaryIcon';
 import { StratagemIcon } from './StratagemIcon';
 import { ThemedText } from "./ThemedText";
 import { ThemedView } from "./ThemedView";
+import { ThrowableIcon } from './ThrowableIcon';
 
 interface LoadoutViewerProps {
   loadoutData: Loadout,
@@ -41,6 +45,7 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
         )}
         
         <ThemedText type='subtitle' style={{color: '#ffe900'}}>Primary: </ThemedText>
+        <PrimaryIcon primaryId={loadoutData.primaryWeapon.uuid} iconHeight={100} iconWidth={100} />
         <View style={{display: 'flex', flexDirection: 'row'}}>
           <View style={{marginLeft: 10}}>
             <ThemedText type='subtitle' style={{color: '#ffe900'}}>{loadoutData.primaryWeapon?.name}</ThemedText>
@@ -50,6 +55,7 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
         </View>
 
         <ThemedText type='subtitle' style={{color: '#ffe900'}}>Secondary: </ThemedText>
+        <SecondaryIcon secondaryId={loadoutData.secondaryWeapon.uuid} iconHeight={100} iconWidth={100} />
         <View style={{display: 'flex', flexDirection: 'row'}}>
           <View style={{marginLeft: 10}}>
             <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{loadoutData.secondaryWeapon?.name}</ThemedText>
@@ -59,6 +65,7 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
         </View>
 
         <ThemedText type='subtitle' style={{color: '#ffe900'}}>Throwable: </ThemedText>
+        <ThrowableIcon throwableId={loadoutData.throwable.uuid} iconHeight={100} iconWidth={100} />
         <View style={{display: 'flex', flexDirection: 'row'}}>
           <View style={{marginLeft: 10}}>
             <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{loadoutData.throwable?.name}</ThemedText>
@@ -88,6 +95,7 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
         </View>
 
         <ThemedText type='subtitle' style={{color: '#ffe900'}}>Booster: </ThemedText>
+        <BoosterIcon boosterId={loadoutData.booster.uuid} iconHeight={100} iconWidth={100} />
         <View style={{display: 'flex', flexDirection: 'row'}}>
           <View style={{marginLeft: 10}}>
             <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{loadoutData.booster?.name}</ThemedText>

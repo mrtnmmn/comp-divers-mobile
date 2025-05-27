@@ -22,7 +22,6 @@ export default function TabTwoScreen() {
 
     setLoading(true);
     try {
-      console.log(pageToFetch)
       const response = await apiFetch<any>(`/loadouts/others?page=${pageToFetch}&size=2`, {
         method: 'GET',
         token,
