@@ -23,7 +23,7 @@ export function ArmorTouchableSelector({ options, onSelect, selected}: ArmorTouc
         style={styles.selector}
         onPress={() => setIsVisible(true)}
       >
-        <Text style={styles.selectorText}>
+        <Text style={[styles.selectorText, (selected === null || selected === undefined) && {color: '#5c5c5c'}]}>
           {selected ? capitalize(selected.category) : 'Select armor'}
         </Text>
         {selected && (
@@ -70,7 +70,7 @@ export function ArmorTouchableSelector({ options, onSelect, selected}: ArmorTouc
 const styles = StyleSheet.create({
   selector: {
     borderWidth: 1,
-    borderColor: '#ffe900',
+    borderColor: '#a3992e',
     borderRadius: 6,
     padding: 12,
     marginBottom: 15,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   detailsText: {
-    color: '#ccc',
+    color: '#aaa',
     fontSize: 12,
     marginTop: 4
   },

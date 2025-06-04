@@ -40,19 +40,21 @@ export function StratagemSelector({
 
   return (
     <>
-      <TouchableOpacity style={styles.selector} onPress={() => setIsVisible(true)}>
+      <TouchableOpacity style={[styles.selector, {gap: 4}]} onPress={() => setIsVisible(true)}>
         {selected.length > 0 ? (
           selected.map((item) => (
             <View key={item.uuid} style={styles.selectedItem}>
-              <StratagemIcon stratagemId={item.uuid} iconHeight={60} iconWidth={60}/>
-              <View style={{ paddingHorizontal: 12 }}>
+              <View style={{minWidth: 60, minHeight: 60}}>
+                <StratagemIcon stratagemId={item.uuid} iconHeight={60} iconWidth={60}/>
+              </View>
+              <View style={{ paddingHorizontal: 12, width: '82%' }}>
                 <ThemedText type='subtitle' style={styles.selectorText}>{item.name}</ThemedText>
                 <Text style={styles.optionDetails}>{capitalize(item.category)}</Text>
               </View>
             </View>
           ))
         ) : (
-          <Text style={styles.selectorText}>Select up to {maxSelections} stratagems</Text>
+          <Text style={[styles.selectorText, {color: '#5c5c5c'}]}>Select up to {maxSelections} stratagems</Text>
         )}
       </TouchableOpacity>
 
@@ -111,7 +113,7 @@ export function StratagemSelector({
 const styles = StyleSheet.create({
   selector: {
     borderWidth: 1,
-    borderColor: '#ffe900',
+    borderColor: '#a3992e',
     borderRadius: 6,
     padding: 12,
     marginBottom: 15,

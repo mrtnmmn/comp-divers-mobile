@@ -3,6 +3,7 @@ import { ArmorTouchableSelector } from "@/components/ArmorTouchableSelector";
 import { BoosterSelector } from "@/components/BoosterSelector";
 import { FactionSelector } from "@/components/FactionSelector";
 import { PrimarySelector } from "@/components/PrimarySelector";
+import SaveLoadoutButton from "@/components/SaveLoadoutButton";
 import { SecondarySelector } from "@/components/SecondarySelector";
 import { StratagemSelector } from "@/components/StratagemSelector";
 import { ThemedText } from "@/components/ThemedText";
@@ -145,80 +146,82 @@ export default function LoadoutCreator() {
       <View style={styles.container}>
           <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
             <TouchableOpacity onPress={() => router.replace('/')}>
-              <FontAwesome name="arrow-left" size={30} color="#fff" style={{marginBottom: 25}}/>
+              <FontAwesome name="arrow-left" size={30} color="#aaa" style={{marginBottom: 25}}/>
             </TouchableOpacity>  
-            <ThemedText type="title" style={[styles.titles, {marginBottom: 20, marginLeft: 10}]}>Creating New Loadout:</ThemedText>
+            <ThemedText type="title" style={[styles.titles, {marginBottom: 20, marginLeft: 10}]}>New Loadout</ThemedText>
           </View>
-          <ThemedText type="subtitle" style={styles.titles}>Loadout name:</ThemedText>
+          <ThemedText type="subtitle" style={styles.titles}>Loadout name</ThemedText>
           <TextInput 
             style={styles.input}
             placeholder="Enter loadout name"
             value={form.name}
             onChangeText={text => handleFormChange('name', text)}
             autoCapitalize="sentences"
+            placeholderTextColor={'#5c5c5c'}
           />
-          <ThemedText type="subtitle" style={styles.titles}>Loadout description:</ThemedText>
+          <ThemedText type="subtitle" style={styles.titles}>Loadout description</ThemedText>
           <TextInput 
-            style={[styles.input, { height: 100, textAlignVertical: 'top' }]}
+            style={[styles.input, { height: 100, textAlignVertical: 'top', color: '#aaa' }]}
             placeholder="Enter loadout description"
             value={form.description}
             onChangeText={text => handleFormChange('description', text)}
             autoCapitalize="sentences"
             multiline={true}
             numberOfLines={4}
+            placeholderTextColor={'#5c5c5c'}
           />
-          <ThemedText type="subtitle" style={styles.titles}>Armor:</ThemedText>
+          <ThemedText type="subtitle" style={styles.titles}>Armor</ThemedText>
           <ArmorTouchableSelector
             options={data !== null && data.armorsData !== null ? data.armorsData: []} 
             selected={form.armor}
             onSelect={armor => handleFormChange('armor', armor)}
           />
-          <ThemedText type="subtitle" style={styles.titles}>Armor Passive:</ThemedText>
+          <ThemedText type="subtitle" style={styles.titles}>Armor passive</ThemedText>
           <ArmorPassiveTouchableSelector
             options={data !== null && data.armorPassivesData !== null ? data.armorPassivesData: []} 
             selected={form.armorPassive}
             onSelect={arrmorPassive => handleFormChange('armorPassive', arrmorPassive)}
           />
-          <ThemedText type="subtitle" style={styles.titles}>Primary weapon:</ThemedText>
+          <ThemedText type="subtitle" style={styles.titles}>Primary weapon</ThemedText>
           <PrimarySelector
             options={data !== null && data.primaryWeaponsData !== null ? data.primaryWeaponsData: []} 
             selected={form.primaryWeapon}
             onSelect={handleFormChange}
             selectionKey={'primaryWeapon'}
           />
-          <ThemedText type="subtitle" style={styles.titles}>Secondary weapon:</ThemedText>
+          <ThemedText type="subtitle" style={styles.titles}>Secondary weapon</ThemedText>
           <SecondarySelector 
             options={data !== null && data.secondaryWeaponsData !== null ? data.secondaryWeaponsData: []} 
             selected={form.secondaryWeapon}
             onSelect={handleFormChange}
             selectionKey={'secondaryWeapon'}
           />
-          <ThemedText type="subtitle" style={styles.titles}>Throwables:</ThemedText>
+          <ThemedText type="subtitle" style={styles.titles}>Throwables</ThemedText>
           <ThrowableSelector 
             options={data !== null && data.throwablesData !== null ? data.throwablesData: []} 
             selected={form.throwable}
             onSelect={handleFormChange}
             selectionKey={'throwable'}
           />
-          <ThemedText type="subtitle" style={styles.titles}>Stratagems:</ThemedText>
+          <ThemedText type="subtitle" style={styles.titles}>Stratagems</ThemedText>
           <StratagemSelector 
             options={data !== null && data.stratagemsData !== null ? data.stratagemsData : []}
             selected={form.stratagems}
             onChange={stratagems => handleFormChange('stratagems' , stratagems)}
             maxSelections={4}
           />
-          <ThemedText type="subtitle" style={styles.titles}>Booster:</ThemedText>
+          <ThemedText type="subtitle" style={styles.titles}>Booster</ThemedText>
           <BoosterSelector 
             options={data !== null && data.boostersData !== null ? data.boostersData: []} 
             selected={form.booster}
             onSelect={handleFormChange}
             selectionKey={'booster'}
           />
-          <ThemedText type="subtitle" style={styles.titles}>Faction:</ThemedText>
+          <ThemedText type="subtitle" style={styles.titles}>Faction</ThemedText>
           <FactionSelector 
             options={data !== null && data.factionsData !== null ? data.factionsData: []}
             onSelect={factions => handleFormChange('factions', factions)}/>
-          <SaveButton title="Save Loadout" onPress={saveForm}/>
+          <SaveLoadoutButton title="Save Loadout" onPress={saveForm} style={{marginBottom: 100}}/>
       </View>
     </ScrollView>
   )
@@ -235,12 +238,12 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ffe900',
+    borderColor: '#a3992e', 
     paddingHorizontal: 12,
     paddingVertical: 8,
     borderRadius: 6,
     marginBottom: 15,
-    color: '#ffe900',
+    color: '#fee900',
     backgroundColor: '#1e1f21'
   },
   titles: {

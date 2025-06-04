@@ -26,22 +26,22 @@ export function BoosterSelector({ options, onSelect, selected, selectionKey}: To
         onPress={() => setIsVisible(true)}
       >
         {!selected?.name &&
-          <ThemedText type='subtitle' style={[styles.selectorText]}>
+          <Text style={[styles.selectorText, (selected === null || selected === undefined || selected === '') && {marginVertical: 12, color: '#5c5c5c'}]}>
             Select booster
-          </ThemedText>
+          </Text>
         }
 
         {selected && (
-          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', paddingVertical: 6, marginVertical: 0}}>
             <BoosterIcon boosterId={selected.uuid} iconHeight={100} iconWidth={100}/>
-            <View style={{ display: 'flex', flexDirection: 'column', marginLeft: 10}}>
-              <ThemedText type='subtitle' style={styles.optionText}>{selected.name}</ThemedText>
+            <View style={{ display: 'flex', flexDirection: 'column', marginLeft: 10, maxWidth: '65%' }}>
+              <ThemedText type='subtitle' style={styles.optionText}>{capitalize(selected.name)}</ThemedText>
               <Text style={styles.optionDetails}>{selected.description}</Text>
             </View>
           </View>
         )}
       </TouchableOpacity>
-
+r
       <Modal
         visible={isVisible}
         transparent
@@ -62,7 +62,7 @@ export function BoosterSelector({ options, onSelect, selected, selectionKey}: To
                   style={styles.option}
                   onPress={() => handleSelect(item)}
                 >
-                  <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+                  <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '70%' }}>
                     <BoosterIcon boosterId={item.uuid} iconHeight={100} iconWidth={100}/>
                     <View style={{ display: 'flex', flexDirection: 'column', marginLeft: 10}}>
                       <ThemedText type='subtitle' style={styles.optionText}>{capitalize(item.name)}</ThemedText>
@@ -82,9 +82,9 @@ export function BoosterSelector({ options, onSelect, selected, selectionKey}: To
 const styles = StyleSheet.create({
   selector: {
     borderWidth: 1,
-    borderColor: '#ffe900',
+    borderColor: '#a3992e',
     borderRadius: 6,
-    padding: 12,
+    paddingHorizontal: 12,
     marginBottom: 15,
     backgroundColor: '#1e1f21',
   },
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     color: '#ffe900',
   },
   detailsText: {
-    color: '#ccc',
+    color: '#aaa',
     fontSize: 12,
     marginTop: 4
   },
@@ -119,5 +119,6 @@ const styles = StyleSheet.create({
   optionDetails: {
     color: '#aaa',
     fontSize: 12,
+    marginLeft: 2
   },
 })

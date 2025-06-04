@@ -24,9 +24,9 @@ export function PrimarySelector({ options, onSelect, selected, selectionKey}: To
         style={styles.selector}
         onPress={() => setIsVisible(true)}
       >
-        <ThemedText type='subtitle' style={[styles.selectorText, (selected === null || selected === undefined || selected === '')  && {marginBottom: 12}]}>
+        <Text style={[styles.selectorText, (selected === null || selected === undefined || selected === '')  && {marginBottom: 12, color: '#5c5c5c'}]}>
           {selected ? selected.name : 'Select weapon'}
-        </ThemedText>
+        </Text>
         {selected && (
           <>
             <Text style={styles.optionDetails}>Category: {selected.category}, Penetration: {selected.penetration}</Text>
@@ -71,7 +71,7 @@ export function PrimarySelector({ options, onSelect, selected, selectionKey}: To
 const styles = StyleSheet.create({
   selector: {
     borderWidth: 1,
-    borderColor: '#ffe900',
+    borderColor: '#a3992e',
     borderRadius: 6,
     paddingTop: 12,
     paddingHorizontal: 12,
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   },
   selectorText: {
     color: '#ffe900',
+    fontSize: 16,
   },
   detailsText: {
     color: '#ccc',

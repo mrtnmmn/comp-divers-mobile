@@ -25,9 +25,9 @@ export function ThrowableSelector({ options, onSelect, selected, selectionKey}: 
         onPress={() => setIsVisible(true)}
       >
         {!selected?.name &&
-          <ThemedText type='subtitle' style={[styles.selectorText]}>
+          <Text style={[styles.selectorText, (selected === null || selected === undefined || selected === '')  && {color: '#5c5c5c'}]}>
             Select throwable
-          </ThemedText>
+          </Text>
         }
 
         {selected && (
@@ -83,7 +83,7 @@ export function ThrowableSelector({ options, onSelect, selected, selectionKey}: 
 const styles = StyleSheet.create({
   selector: {
     borderWidth: 1,
-    borderColor: '#ffe900',
+    borderColor: '#a3992e',
     borderRadius: 6,
     padding: 12,
     marginBottom: 15,
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
   },
   selectorText: {
     color: '#ffe900',
+    fontSize: 16
   },
   detailsText: {
     color: '#ccc',

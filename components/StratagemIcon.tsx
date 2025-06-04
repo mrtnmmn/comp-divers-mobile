@@ -15,7 +15,7 @@ export const StratagemIcon = ({ stratagemId, iconWidth, iconHeight }: Props) => 
   if (!SvgIcon) return null;
 
   return (
-    <View>
+    <View style={[styles.iconContainer, {minHeight: iconHeight, minWidth: iconWidth}]}>
       <SvgIcon width={iconWidth} height={iconHeight} />
     </View>
   );
@@ -24,8 +24,8 @@ export const StratagemIcon = ({ stratagemId, iconWidth, iconHeight }: Props) => 
 
 const styles = StyleSheet.create({
   iconContainer: {
-    borderWidth: 4,
+    borderWidth: 3,
     borderColor: '#49ADC9',
-    padding: 3
+    padding: 3,
   },
 });

@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
   },
   loadoutList: {
     gap: 8,
-    paddingHorizontal: 16,
-    paddingBottom: 32,
+    paddingHorizontal: 0,
   },
 });

@@ -6,8 +6,6 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import FloatingButton from '@/components/FloatingButton';
 import { LoadoutViewer } from '@/components/LoadoutViewer';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 import { useAuth } from '@/contexts/AuthContext';
 import { Loadout } from '@/interfaces/Loadout';
 import { apiFetch } from '@/utils/api';
@@ -69,11 +67,13 @@ export default function HomeScreen() {
     <View style={styles.flexContainer}>
       {renderParallaxWrapper(
         <>
+          {/*
           <ThemedView style={styles.titleContainer}>
             <ThemedText type="title" style={styles.titleText}>
               Welcome back soldier!
             </ThemedText>
           </ThemedView>
+          */}
 
           <View style={styles.loadoutList}>
             {loadouts?.map((item) => (
@@ -82,7 +82,7 @@ export default function HomeScreen() {
           </View>
         </>
       )}
-      <FloatingButton />
+      {/* <FloatingButton /> */}
     </View>
   );
 

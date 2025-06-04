@@ -57,11 +57,11 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
         <ThemedText>{capitalize(loadoutData.armor?.category)} - {capitalize(loadoutData.armorPassive?.name)}</ThemedText>
 
         <View>
-          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginVertical: 10 }}>
+          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center', marginVertical: 10, gap: 5 }}>
           {
             loadoutData.stratagems?.map((stratagem) => (
               <View style={{display: 'flex', flexDirection: 'row'}} key={stratagem.uuid}>
-              <StratagemIcon stratagemId={stratagem.uuid} iconWidth={60} iconHeight={60}/>
+              <StratagemIcon stratagemId={stratagem.uuid} iconWidth={50} iconHeight={50}/>
               {/*
               <View style={{marginLeft: 10}}>
                 <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{stratagem.name}</ThemedText>
