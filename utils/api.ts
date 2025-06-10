@@ -1,4 +1,4 @@
-const API_BASE_URL_LOCAL = 'http://192.168.1.100:8080/api';
+const API_BASE_URL_LOCAL = 'http://10.20.20.89:8080/api';
 const API_BASE_URL = 'https://compdivers.mrtndev.org/api';
 
 type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';

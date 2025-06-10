@@ -1,3 +1,4 @@
+import { capitalize } from '@/utils/Format'
 import React, { useState } from 'react'
 import { FlatList, Modal, StyleSheet, Text, TouchableOpacity } from 'react-native'
 
@@ -5,11 +6,13 @@ type TouchableSelectorProps = {
   options: any[]
   onSelect: (key: any, value: any) => void
   selected?: any
+  SelectedContent: any
+  selectionContent: (item: any) => any
   selectionKey: any
 }
 
-export function TouchableSelector({ options, onSelect, selected, selectionKey}: TouchableSelectorProps) {
-  const [isVisible, setIsVisible] = useState(false)
+export function TouchableSelector({ options, onSelect, selected, SelectedContent, selectionContent, selectionKey }: TouchableSelectorProps) {
+const [isVisible, setIsVisible] = useState(false)
 
   const handleSelect = (selection: any) => {
     onSelect(selectionKey, selection)
@@ -20,20 +23,12 @@ export function TouchableSelector({ options, onSelect, selected, selectionKey}: 
     <>
       <TouchableOpacity
         style={styles.selector}
-        onPress={() => setIsVisible(true)}
-      >
-        <Text style={styles.selectorText}>
-          {selected ? selected.name : 'Select weapon'}
+        onPress={() => setIsVisible(true)} >
+        <Text style={[styles.selectorText, (selected === null || selected === undefined || selected === '') && {color: '#5c5c5c'}]}>
+          {selected !== null ? selected.name ? selected.name : capitalize(selected.category) : 'Select weapon'}
         </Text>
-        {selected && (
-          <>
-            <Text style={styles.detailsText}>
-              Category: {selected.category} 
-            </Text>
-            <Text style={styles.detailsText}>
-              Penetration: {selected.penetration}
-            </Text>
-          </>
+        {selected !== null && (
+          SelectedContent()
         )}
       </TouchableOpacity>
 
@@ -51,14 +46,13 @@ export function TouchableSelector({ options, onSelect, selected, selectionKey}: 
           <TouchableOpacity activeOpacity={1} style={styles.drawer}>
             <FlatList
               data={options}
-              keyExtractor={(item) => item.uuid}
+              keyExtractor={(item, index) => item.uuid ?? index.toString()}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   style={styles.option}
                   onPress={() => handleSelect(item)}
                 >
-                  <Text style={styles.optionText}>{item.name}</Text>
-                  <Text style={styles.optionDetails}>Category: {item.category}, Penetration: {item.penetration}</Text>
+                  {selectionContent(item)}
                 </TouchableOpacity>
               )}
             />
@@ -72,9 +66,10 @@ export function TouchableSelector({ options, onSelect, selected, selectionKey}: 
 const styles = StyleSheet.create({
   selector: {
     borderWidth: 1,
-    borderColor: '#ffe900',
+    borderColor: '#a3992e',
     borderRadius: 6,
     padding: 12,
+    paddingHorizontal: 12,
     marginBottom: 15,
     backgroundColor: '#1e1f21',
   },

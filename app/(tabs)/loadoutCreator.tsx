@@ -8,6 +8,7 @@ import { SecondarySelector } from "@/components/SecondarySelector";
 import { StratagemSelector } from "@/components/StratagemSelector";
 import { ThemedText } from "@/components/ThemedText";
 import { ThrowableSelector } from "@/components/ThrowableSelector";
+import { TouchableSelectorFactory } from "@/components/touchableSelector/TouchableSelectorFactory";
 import { useAuth } from "@/contexts/AuthContext";
 import { Armor } from "@/interfaces/Armor";
 import { ArmorPassive } from "@/interfaces/ArmorPassive";
@@ -150,6 +151,13 @@ export default function LoadoutCreator() {
             </TouchableOpacity>  
             <ThemedText type="title" style={[styles.titles, {marginBottom: 20, marginLeft: 10}]}>New Loadout</ThemedText>
           </View>
+          <TouchableSelectorFactory 
+            data={data !== null && data.armorsData !== null ? data.armorsData: []}
+            selectedItem={form.armor}
+            type='armor'
+            value={form.armor}
+            handleChange={handleFormChange}
+          />
           <ThemedText type="subtitle" style={styles.titles}>Loadout name</ThemedText>
           <TextInput 
             style={styles.input}
