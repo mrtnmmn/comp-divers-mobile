@@ -61,7 +61,7 @@ export function LoadoutViewer({ loadoutData, isSocial }: LoadoutViewerProps) {
           {
             loadoutData.stratagems?.map((stratagem) => (
               <View style={{display: 'flex', flexDirection: 'row'}} key={stratagem.uuid}>
-              <StratagemIcon stratagemId={stratagem.uuid} iconWidth={50} iconHeight={50}/>
+              <StratagemIcon stratagemId={stratagem.uuid} stratagemType={stratagem.stratagemType} iconWidth={50} iconHeight={50}/>
               {/*
               <View style={{marginLeft: 10}}>
                 <ThemedText type='defaultSemiBold' style={{color: '#ffe900'}}>{stratagem.name}</ThemedText>

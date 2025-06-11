@@ -45,7 +45,7 @@ export function StratagemSelector({
           selected.map((item) => (
             <View key={item.uuid} style={styles.selectedItem}>
               <View style={{minWidth: 60, minHeight: 60}}>
-                <StratagemIcon stratagemId={item.uuid} iconHeight={60} iconWidth={60}/>
+                <StratagemIcon stratagemId={item.uuid} stratagemType={item.stratagemType} iconHeight={60} iconWidth={60}/>
               </View>
               <View style={{ paddingHorizontal: 12, width: '82%' }}>
                 <ThemedText type='subtitle' style={styles.selectorText}>{item.name}</ThemedText>
@@ -89,7 +89,7 @@ export function StratagemSelector({
                   >
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginHorizontal: 10 }}>
                       <View style={{ display:'flex', flexDirection: 'row' }}>
-                        <StratagemIcon stratagemId={item.uuid} iconHeight={40} iconWidth={40}/>
+                        <StratagemIcon stratagemId={item.uuid} stratagemType={item.stratagemType} iconHeight={40} iconWidth={40}/>
                         <View style={{marginLeft: 10, justifyContent: 'center'}}>
                           <Text style={styles.optionText}>{item.name}</Text>
                           <Text style={styles.optionDetails}>

@@ -32,13 +32,13 @@ import Lift850JumpPack from '@/assets/images/stratagems/Hangar/94d07190-f531-43e
 import M102FastReconVehicle from '@/assets/images/stratagems/Hangar/c40947ef-a111-46f6-a18e-c1c7a07bdf38.svg'
 import SmokeAirstrike from '@/assets/images/stratagems/Hangar/e0c348fc-2453-4c22-98de-cec96c2c9732.svg'
 //Bridge
-import AArc3TeslaTowe from '@/assets/images/stratagems/Bridge/0236d96c-6236-400c-901c-ed0d50c2035c.svg'
 import PrecisionStrike from '@/assets/images/stratagems/Bridge/08010ca6-aef1-4f4f-845b-87251c5f10ba.svg'
 import EGl21GrenadierBattlement from '@/assets/images/stratagems/Bridge/17582177-f01c-4c3f-87ae-b0e81a503316.svg'
 import GasStrike from '@/assets/images/stratagems/Bridge/179f8566-42eb-4560-8844-d0e298c2294c.svg'
 import EMSStrike from '@/assets/images/stratagems/Bridge/1ac9043e-4934-4123-b3df-da4f4dd421b7.svg'
 import EMg101HmgEmplacement from '@/assets/images/stratagems/Bridge/50a2a1b7-2f84-4671-af3b-21b79a9ad945.svg'
 import Fx12ShieldGeneratorRelay from '@/assets/images/stratagems/Bridge/7bae496b-4735-4728-80ea-e429c3c8a82d.svg'
+import AArc3TeslaTower from '@/assets/images/stratagems/Bridge/e75ac434-f5a8-4cb7-b0f9-614433a023cf.svg'
 import SmokeStrike from '@/assets/images/stratagems/Bridge/fcbb92e2-b22d-46cc-9209-31536d9385e7.svg'
 //Engineering bay
 import Sh32ShieldGeneratorPack from '@/assets/images/stratagems/Engineering Bay/199709cd-ba4c-438c-befd-ce460e8008e7.svg'
@@ -119,7 +119,7 @@ export const stratagemSvgMapper: Record<string, React.FC<SvgProps>> = {
   'fcbb92e2-b22d-46cc-9209-31536d9385e7': SmokeStrike,
   '50a2a1b7-2f84-4671-af3b-21b79a9ad945': EMg101HmgEmplacement,
   '7bae496b-4735-4728-80ea-e429c3c8a82d': Fx12ShieldGeneratorRelay,
-  '0236d96c-6236-400c-901c-ed0d50c2035c': AArc3TeslaTowe,
+  'e75ac434-f5a8-4cb7-b0f9-614433a023cf': AArc3TeslaTower,
   '17582177-f01c-4c3f-87ae-b0e81a503316': EGl21GrenadierBattlement,
   //Engineering bay
   'e135bd1a-489b-4b62-93d8-aa2831cd4ad0': Md6AntiPersonnelMinefield,

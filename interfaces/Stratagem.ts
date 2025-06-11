@@ -4,5 +4,6 @@ export interface Stratagem {
   uuid: string
   name: string
   category: string
+  stratagemType: string
   warbond: Warbond
 }
