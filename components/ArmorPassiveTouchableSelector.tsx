@@ -1,7 +1,8 @@
 import { ArmorPassive } from '@/interfaces/ArmorPassive'
 import { capitalize } from '@/utils/Format'
 import React, { useState } from 'react'
-import { FlatList, Modal, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { FlatList, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ArmorPassiveIcon } from './ArmorPassiveIcon'
 
 type ArmorPassiveTouchableSelectorProps = {
   options: ArmorPassive[]
@@ -55,8 +56,13 @@ export function ArmorPassiveTouchableSelector({ options, onSelect, selected}: Ar
                   style={styles.option}
                   onPress={() => handleSelect(item)}
                 >
-                  <Text style={styles.optionText}>{capitalize(item.name)}</Text>
-                  <Text style={styles.detailsText}>{item.category}</Text>
+                  <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                    <ArmorPassiveIcon passiveId={item.uuid} iconWidth={45} iconHeight={45}/>
+                    <View style={{ display: 'flex', flexDirection: 'column', paddingLeft: 10 }}>
+                      <Text style={styles.optionText}>{capitalize(item.name)}</Text>
+                      <Text style={styles.detailsText}>{item.category}</Text>
+                    </View>
+                  </View>
                 </TouchableOpacity>
               )}
             />
